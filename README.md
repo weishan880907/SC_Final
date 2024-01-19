@@ -62,14 +62,16 @@ To execute a primality test, use the following command format:
     
 Replace <primality_test_name> with the specific primality test you want to run, and <number_to_test> with the numerical value you wish to test for primality.
 
+If no argument is provided, the default input is set to 23.
+
 The output of the test will indicate whether the specified number is determined to be a prime, composite, or probable prime.
 
 For example, the output should resemble:
 
-1. <number_to_test> is a prime. (if the number is prime)
+1. <number_to_test> is prime. (if the number is prime)
 
 2. <number_to_test> is composite. (if the number is composite)
 
-3. <number_to_test> is probable prime. (if the number is a probable prime)
+3. <number_to_test> is probably prime. (if the number is a probably prime)
 
 Adjust the command and interpret the output accordingly based on your specific primality test requirements.
