@@ -25,7 +25,7 @@ This study explores and compares prime number testing algorithms, focusing on th
 ## Workspace
 1. To clone this repository, execute the following command in your terminal:
     ```
-    git clone https://github.com/weishan880907/SC_Final.git -b weishan-dev
+    git clone https://github.com/weishan880907/SC_Final.git
     ```
 
 
