@@ -47,4 +47,5 @@ This study explores and compares prime number testing algorithms, focusing on th
 4. Switch to your personal development branch using the following command:
     ```
     git checkout -b <your_name>-dev
+    git push -u <remote_name> <your_name-dev
     ```
