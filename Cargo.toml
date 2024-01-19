@@ -20,5 +20,4 @@ name = "sieve_of_eratosthenes"
 path = "src/sieve_of_eratosthenes.rs"
 
 [dependencies]
-flate2 = "1.0.28"
 rand = "0.8.5"

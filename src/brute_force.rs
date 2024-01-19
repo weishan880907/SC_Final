@@ -1,4 +1,6 @@
 // 499263 Wei-Shan Chang
+// TODO: add the restriction of input with Big Int.
+
 use std::env;
 
 fn is_prime(n: u64) -> bool {
@@ -27,7 +29,7 @@ fn main() {
             23
         });
 
-    // Check if the number is prime. There will not be probable prime here.
+    // Check if the number is prime. There will not be probably prime here.
     if is_prime(num_to_test) {
         println!("{} is prime.", num_to_test);
     } else {
