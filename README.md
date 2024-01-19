@@ -14,8 +14,7 @@ This study explores and compares prime number testing algorithms, focusing on th
 - [Installation Guide](#installation-guide)
     - [Workspace](#workspace)
 - [Usage Intructions](#usage-instructions)
-    - [How to run a primality test]
-
+    - [Performing a Primality Test](#performing-a-primality-test)
 
 ## Built with
 * [Rust](https://www.rust-lang.org) - A systems programming language that combines performance and safety, empowering developers to write reliable and efficient software.
