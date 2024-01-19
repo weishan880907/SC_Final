@@ -30,13 +30,16 @@ This study explores and compares prime number testing algorithms, focusing on th
 
 
 2. Initialize the repository with the following commands:
-    ```
+    
+    ```sh
     git init
     git remote add SC_Final https://github.com/weishan880907/SC_Final.git
     ```
 
 
+
 3. After cloning the repository, your project workspace should have the following folder structure:
+    
     ```
     SC_Final 
     ├── src
@@ -48,11 +51,14 @@ This study explores and compares prime number testing algorithms, focusing on th
     ├── README.md
     ```
     
+    
 4. Switch to your personal development branch using the following command:
+    
     ```
     git checkout -b <your_name>-dev
     git push -u <remote_name> <your_name>-dev
     ```
+
 
 # Usage instruction
 
@@ -65,10 +71,13 @@ Replace <primality_test_name> with the specific primality test you want to run, 
 
 If no argument is provided, the default input is set to 23.
 
+If no argument is provided, the default input is set to 23.
+
 The output of the test will indicate whether the specified number is determined to be a prime, composite, or probable prime.
 
 For example, the output should resemble:
 
+1. <number_to_test> is prime. (if the number is prime)
 1. <number_to_test> is prime. (if the number is prime)
 
 2. <number_to_test> is composite. (if the number is composite)
