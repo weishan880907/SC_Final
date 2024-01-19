@@ -77,7 +77,6 @@ The output of the test will indicate whether the specified number is determined 
 For example, the output should resemble:
 
 1. <number_to_test> is prime. (if the number is prime)
-1. <number_to_test> is prime. (if the number is prime)
 
 2. <number_to_test> is composite. (if the number is composite)
 
