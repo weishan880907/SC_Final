@@ -13,6 +13,9 @@ This study explores and compares prime number testing algorithms, focusing on th
     - [Built with](#built-with)
 - [Installation Guide](#installation-guide)
     - [Workspace](#workspace)
+- [Usage Intructions](#usage-instructions)
+    - [How to run a primality test]
+
 
 ## Built with
 * [Rust](https://www.rust-lang.org) - A systems programming language that combines performance and safety, empowering developers to write reliable and efficient software.
@@ -21,12 +24,12 @@ This study explores and compares prime number testing algorithms, focusing on th
 
 ## Workspace
 1. To clone this repository, execute the following command in your terminal:
-    ```sh
+    ```
     git clone https://github.com/weishan880907/SC_Final.git -b weishan-dev
     ```
 
 2. Initialize the repository with the following commands:
-    ```sh
+    ```
     git init
     git remote add SC_Final https://github.com/weishan880907/SC_Final.git
     ```
@@ -47,4 +50,26 @@ This study explores and compares prime number testing algorithms, focusing on th
 4. Switch to your personal development branch using the following command:
     ```
     git checkout -b <your_name>-dev
+    git push -u <remote_name> <your_name-dev
     ```
+
+# Usage instruction
+
+## Performing a Primality Test
+To execute a primality test, use the following command format: 
+
+    cargo run --bin <primality_test_name> <number_to_test>
+    
+Replace <primality_test_name> with the specific primality test you want to run, and <number_to_test> with the numerical value you wish to test for primality.
+
+The output of the test will indicate whether the specified number is determined to be a prime, composite, or probable prime.
+
+For example, the output should resemble:
+
+1. <number_to_test> is a prime. (if the number is prime)
+
+2. <number_to_test> is composite. (if the number is composite)
+
+3. <number_to_test> is probable prime. (if the number is a probable prime)
+
+Adjust the command and interpret the output accordingly based on your specific primality test requirements.
