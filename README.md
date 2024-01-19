@@ -28,11 +28,13 @@ This study explores and compares prime number testing algorithms, focusing on th
     git clone https://github.com/weishan880907/SC_Final.git -b weishan-dev
     ```
 
+
 2. Initialize the repository with the following commands:
     ```
     git init
     git remote add SC_Final https://github.com/weishan880907/SC_Final.git
     ```
+
 
 3. After cloning the repository, your project workspace should have the following folder structure:
     ```
@@ -44,9 +46,8 @@ This study explores and compares prime number testing algorithms, focusing on th
         ├── sieve_of_eratosthenes.rs
     ├── Cargo.toml
     ├── README.md
-
     ```
-
+    
 4. Switch to your personal development branch using the following command:
     ```
     git checkout -b <your_name>-dev
