@@ -25,22 +25,22 @@ This study explores and compares prime number testing algorithms, focusing on th
 ## Workspace
 1. To clone this repository, execute the following command in your terminal:
     
-
+    ```sh
     git clone https://github.com/weishan880907/SC_Final.git
-    
+    ```
 
 
 2. Initialize the repository with the following commands:
     
-
+    ```sh
     git init
     git remote add SC_Final https://github.com/weishan880907/SC_Final.git
-    
+    ```
 
 
 3. After cloning the repository, your project workspace should have the following folder structure:
     
-
+    ```
     SC_Final 
     ├── src
         ├── aks.rs
@@ -49,16 +49,14 @@ This study explores and compares prime number testing algorithms, focusing on th
         ├── sieve_of_eratosthenes.rs
     ├── Cargo.toml
     ├── README.md
-
+    ```
     
-
-
 4. Switch to your personal development branch using the following command:
     
-
+    ```
     git checkout -b <your_name>-dev
     git push -u <remote_name> <your_name-dev
-    
+    ```
 
 
 # Usage instruction
