@@ -1,0 +1,24 @@
+[package]
+name = "Final"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "aks"
+path = "src/aks.rs"
+
+[[bin]]
+name = "brute_force"
+path = "src/brute_force.rs"
+
+[[bin]]
+name = "fermat_little_theorem"
+path = "src/fermat_little_theorem.rs"
+
+[[bin]]
+name = "sieve_of_eratosthenes"
+path = "src/sieve_of_eratosthenes.rs"
+
+[dependencies]
+flate2 = "1.0.28"
+rand = "0.8.5"
