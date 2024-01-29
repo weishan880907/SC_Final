@@ -1,4 +1,6 @@
-use std::env;
+// 499263 Wei-Shan Chang
+
+use std::{env, time};
 use num_bigint::BigUint;
 use num_traits::{One, Zero};
 
@@ -33,7 +35,7 @@ fn main() {
         });
 
     // Measure the time taken to check if the number is prime.
-    let start_time = std::time::Instant::now();
+    let start_time = time::Instant::now();
     if is_prime(&num_to_test) {
         println!("{} is prime.", num_to_test);
     } else {
