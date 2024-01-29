@@ -72,13 +72,13 @@ fn main() {
 
     // Measure the time taken to check if each number in the input vector is probably prime.
     let start_time = time::Instant::now();
-    let prime_numbers: Vec<BigUint> = input
+    let primes: Vec<BigUint> = input
         .into_iter()
         .filter(|num| is_prime_fermat(num, k))
         .collect();
     let elapsed_time = start_time.elapsed();
 
     // Output the prime numbers and the time taken.
-    println!("Prime numbers: {:?}", prime_numbers);
+    println!("Prime numbers: {:?}", primes);
     println!("Time: {:?}", elapsed_time);
 }
