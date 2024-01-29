@@ -56,23 +56,36 @@ This study explores and compares prime number testing algorithms, focusing on th
 
 # Usage instruction
 
-## Performing a Primality Test
-To execute a primality test, use the following command format: 
+# Primality Test Tool
 
-    cargo run --bin <primality_test_name> <number_to_test>
-    
-Replace <primality_test_name> with the specific primality test you want to run, and <number_to_test> with the numerical value you wish to test for primality.
+## Usage Instructions
 
-If no argument is provided, the default input is set to 23.
+### Overview
+This tool provides functionality for testing the primality of given BigInt numbers using different primality tests. The updated version now supports testing a vector of BigInt numbers and provides results in the form of prime numbers along with the execution time.
 
-The output of the test will indicate whether the specified number is determined to be a prime, composite, or probable prime.
+### How to Run
 
-For example, the output should resemble:
+To execute a primality test for a vector of BigInt numbers, use the following command format:
 
-1. <number_to_test> is prime. (if the number is prime)
+```sh
+cargo run --bin <primality_test_name> <number1> <number2> ...
+```
 
-2. <number_to_test> is composite. (if the number is composite)
+Replace <primality_test_name> with the specific primality test you want to run, and provide a list of BigInt numbers (<number1>, <number2>, ...) to test for primality.
 
-3. <number_to_test> is probably prime. (if the number is a probably prime)
+### Example
+For example, to test whether 10, 23, and 37 are prime or probably prime using the brute-force primality test, run the following command:
+
+```sh
+cargo run --bin brute_force 10 23 37
+```
+### Output Interpretation
+The output of the test will indicate the prime numbers found in the provided list along with the execution time.
+```
+Prime numbers: [23, 37]
+Time: 36.583µs
+```
 
 Adjust the command and interpret the output accordingly based on your specific primality test requirements.
+
+Feel free to explore different primality tests by replacing <primality_test_name> with the desired test name.
