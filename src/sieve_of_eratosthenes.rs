@@ -57,7 +57,7 @@ fn main() {
     let primes = find_primes_sieve(input.clone());
     let elapsed_time = start_time.elapsed();
 
-    // Output the prime numbers.
+    // Output the prime numbers and the time taken.
     println!("Prime numbers: {:?}", primes);
     println!("Time: {:?}", elapsed_time);
 }

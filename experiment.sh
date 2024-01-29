@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Test names list
-test_names=("brute_force" "fermat_little_theorem")
+test_names=("brute_force" "fermat_little_theorem" "sieve_of_eratosthenes")
 
 # Test numbers list
 test_numbers="10 23 37"
