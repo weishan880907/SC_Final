@@ -2,7 +2,7 @@
 
 use std::{env, time};
 use num_bigint::BigUint;
-use num_traits::{One, ToPrimitive};
+use num_traits::{One, Zero, ToPrimitive};
 
 fn sieve_of_eratosthenes(limit: &BigUint) -> Vec<bool> {
     let limit_usize: usize = limit.to_usize().unwrap_or(usize::MAX);
@@ -22,6 +22,15 @@ fn sieve_of_eratosthenes(limit: &BigUint) -> Vec<bool> {
     is_prime
 }
 
+fn find_primes_sieve(numbers: Vec<BigUint>) -> Vec<BigUint> {
+    let max_number = numbers.iter().fold(BigUint::zero(), |acc, x| acc.max(x.clone()));
+    let sieve = sieve_of_eratosthenes(&max_number);
+
+    numbers
+        .into_iter()
+        .filter(|n| is_prime_sieve(n, &sieve))
+        .collect()
+}
 fn is_prime_sieve(n: &BigUint, sieve: &Vec<bool>) -> bool {
     if n <= &BigUint::one() {
         return false;
@@ -34,30 +43,21 @@ fn is_prime_sieve(n: &BigUint, sieve: &Vec<bool>) -> bool {
 
     sieve[n_usize]
 }
-
 fn main() {
-    // Get the input from the command line.
+    // Get the input from the command line as Vec<BigUint>.
     let args: Vec<String> = env::args().collect();
+    let input: Vec<BigUint> = args
+        .iter()
+        .skip(1) // Skip the program name
+        .map(|arg| arg.parse().unwrap())
+        .collect();
 
-    // Parse the input as BigUint and set default value as 23.
-    let num_to_test: BigUint = args.get(1)
-        .and_then(|arg| arg.parse().ok())
-        .unwrap_or_else(|| {
-            eprintln!("Invalid or missing input. Using default value: 23");
-            BigUint::from(23u32)
-        });
-
-    // Generate a sieve of Eratosthenes up to the given number
-    let sieve = sieve_of_eratosthenes(&num_to_test);
-
-    // Measure the time taken to check if the number is prime using the sieve
+    // Find the prime numbers in the input vector.
     let start_time = time::Instant::now();
-    if is_prime_sieve(&num_to_test, &sieve) {
-        println!("{} is prime.", num_to_test);
-    } else {
-        println!("{} is composite.", num_to_test);
-    }
+    let primes = find_primes_sieve(input.clone());
     let elapsed_time = start_time.elapsed();
 
-    println!("Time taken: {:?}", elapsed_time);
+    // Output the prime numbers.
+    println!("Prime numbers: {:?}", primes);
+    println!("Time: {:?}", elapsed_time);
 }

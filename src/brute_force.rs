@@ -22,26 +22,25 @@ fn is_prime(n: &BigUint) -> bool {
     true
 }
 
+fn find_prime_numbers(input: Vec<BigUint>) -> Vec<BigUint> {
+    input.into_iter().filter(|n| is_prime(n)).collect()
+}
+
 fn main() {
-    // Get the input from the command line.
+    // Get the input from the command line as Vec<BigUint>.
     let args: Vec<String> = env::args().collect();
+    let input: Vec<BigUint> = args
+        .iter()
+        .skip(1) // Skip the program name
+        .map(|arg| arg.parse().unwrap())
+        .collect();
 
-    // Parse the input as BigUint and set default value as 23.
-    let num_to_test: BigUint = args.get(1)
-        .and_then(|arg| arg.parse().ok())
-        .unwrap_or_else(|| {
-            eprintln!("Invalid or missing input. Using default value: 23");
-            BigUint::from(23u32)
-        });
-
-    // Measure the time taken to check if the number is prime.
+    // Find the prime numbers in the input vector.
     let start_time = time::Instant::now();
-    if is_prime(&num_to_test) {
-        println!("{} is prime.", num_to_test);
-    } else {
-        println!("{} is composite.", num_to_test);
-    }
+    let primes: Vec<BigUint> = find_prime_numbers(input.clone());
     let elapsed_time = start_time.elapsed();
 
-    println!("Time taken: {:?}", elapsed_time);
+    // Output the prime numbers.
+    println!("Prime numbers: {:?}", primes);
+    println!("Time: {:?}", elapsed_time);
 }
