@@ -20,4 +20,6 @@ name = "sieve_of_eratosthenes"
 path = "src/sieve_of_eratosthenes.rs"
 
 [dependencies]
-rand = "0.8.5"
+rand = "0.8"
+num-bigint = "0.4"
+num-traits = "0.2"
