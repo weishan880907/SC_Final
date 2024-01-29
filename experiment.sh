@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Test names list
-test_names=("brute_force" "fermat_little_theorem" "sieve_of_eratosthenes")
+test_names=("brute_force" "fermat_little_theorem" "sieve_of_eratosthenes" "aks")
 
 # Test numbers list
-test_numbers="10 23 37"
+test_numbers="3	17	577	9721 8145299	6759414029		940096417244711"
 
 # Output file
 output_file="test_results.txt"
