@@ -1,3 +1,5 @@
+// 499263 Wei-Shan Chang
+
 use std::{env, time};
 use num_bigint::BigUint;
 use num_traits::{One, Zero, ToPrimitive};
@@ -9,12 +11,15 @@ fn mod_exp(base: &BigUint, exponent: &BigUint, modulus: &BigUint) -> BigUint {
     }
 
     let mut result = BigUint::one();
-    let base = base % modulus;
+    let mut base_power = base.clone() % modulus;
 
-    let mut current_exp = BigUint::zero();
-    while current_exp < *exponent {
-        result = (result * &base) % modulus;
-        current_exp += BigUint::one();
+    let mut exp = exponent.clone();
+    while exp > BigUint::zero() {
+        if exp.clone() % BigUint::from(2u32) == BigUint::one() {
+            result = (result * &base_power) % modulus.clone();
+        }
+        base_power = (base_power.clone() * base_power) % modulus.clone();
+        exp = exp >> 1;
     }
 
     result
