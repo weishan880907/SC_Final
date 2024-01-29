@@ -4,7 +4,6 @@ use num_traits::{One, Zero, ToPrimitive};
 use rand::Rng;
 
 fn mod_exp(base: &BigUint, exponent: &BigUint, modulus: &BigUint) -> BigUint {
-    let mod_exp_time = time::Instant::now();
     if modulus.is_one() {
         return BigUint::zero();
     }
@@ -17,7 +16,6 @@ fn mod_exp(base: &BigUint, exponent: &BigUint, modulus: &BigUint) -> BigUint {
         result = (result * &base) % modulus;
         current_exp += BigUint::one();
     }
-    println!("Mod Exp Time: {:?}", mod_exp_time.elapsed());
 
     result
 }
@@ -31,7 +29,6 @@ fn gcd(a: &BigUint, b: &BigUint) -> BigUint {
 }
 
 fn is_prime_fermat(n: &BigUint, k: usize) -> bool {
-    let is = time::Instant::now();
     if n.is_one() {
         return false;
     }
@@ -41,7 +38,6 @@ fn is_prime_fermat(n: &BigUint, k: usize) -> bool {
     for _ in 0..k {
         let a_u64: u64 = rng.gen_range(2..n.to_u64().unwrap_or(u64::MAX));
         let a = BigUint::from(a_u64);
-        println!("{}, {}", a_u64,a );
         // Check gcd(a, n) != 1
         if gcd(&a, n) != BigUint::one() {
             return false;
@@ -52,7 +48,6 @@ fn is_prime_fermat(n: &BigUint, k: usize) -> bool {
             return false;
         }
     }
-    println!("is fermat Time: {:?}", is.elapsed());
     true
     
 }
