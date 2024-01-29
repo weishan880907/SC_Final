@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# List of test names
+# Test names list
 test_names=("brute_force" "fermat_little_theorem")
 
 # Test numbers list
@@ -15,7 +15,7 @@ for test_name in "${test_names[@]}"; do
 
     # Save the test name to the file
     echo "Test: $test_name" >> $output_file
-    
+
     # Run the test and append the output to the file
     cargo run --bin $test_name $test_numbers >> $output_file
 
