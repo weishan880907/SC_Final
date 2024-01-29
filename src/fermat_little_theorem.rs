@@ -54,32 +54,31 @@ fn is_prime_fermat(n: &BigUint, k: usize) -> bool {
         }
     }
     true
-    
 }
 
 fn main() {
     // Get the input from the command line.
     let args: Vec<String> = env::args().collect();
 
-    // Parse the input as BigUint and set the default value as 23.
-    let num_to_test: BigUint = args.get(1)
-        .and_then(|arg| arg.parse().ok())
-        .unwrap_or_else(|| {
-            eprintln!("Invalid or missing input. Using default value: 23");
-            BigUint::from(23u32)
-        });
+    // Parse the input as Vec<BigUint> and set the default value as [23u32].
+    let input: Vec<BigUint> = args
+        .iter()
+        .skip(1) // Skip the program name
+        .map(|arg| arg.parse().unwrap())
+        .collect();
 
     // Choose a value of k, which determines the number of tests.
     let k = 5;
 
-    // Measure the time taken to check if the number is probably prime.
+    // Measure the time taken to check if each number in the input vector is probably prime.
     let start_time = time::Instant::now();
-    if is_prime_fermat(&num_to_test, k) {
-        println!("{} is probably prime.", num_to_test);
-    } else {
-        println!("{} is composite.", num_to_test);
-    }
+    let prime_numbers: Vec<BigUint> = input
+        .into_iter()
+        .filter(|num| is_prime_fermat(num, k))
+        .collect();
     let elapsed_time = start_time.elapsed();
 
-    println!("Time taken: {:?}", elapsed_time);
+    // Output the prime numbers and the time taken.
+    println!("Prime numbers: {:?}", prime_numbers);
+    println!("Time: {:?}", elapsed_time);
 }
