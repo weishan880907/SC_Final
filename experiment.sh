@@ -13,16 +13,17 @@ test_numbers=(3	17	577	9721	8145299	6759414029		940096417244711
 # Output file
 output_file="test_results.txt"
 
-# Loop over each test name
-for test_name in "${test_names[@]}"; do
-    echo "Running tests for $test_name"
-    # Save the test name to the file
-    echo "Test: $test_name" >> $output_file
-    for num in "${test_numbers[@]}"; do
+
+for num in "${test_numbers[@]}"; do
+    for test_name in "${test_names[@]}"; do
+        echo "Running tests for $test_name"
+        # Save the test name to the file
+        echo "Test: $test_name" >> $output_file
         # Run the test and append the output to the file
         cargo run --bin $test_name $num >> $output_file
         echo "---------------------------------" >> $output_file
     done
+    echo "Number Test End: $num" >> $output_file
     echo "---------------------------------" >> $output_file
 done
 

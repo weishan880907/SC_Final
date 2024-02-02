@@ -2,7 +2,7 @@
 
 use std::{env, time};
 use num_bigint::BigUint;
-use num_traits::{One, Zero, ToPrimitive, FromPrimitive};
+use num_traits::{One, Zero, ToPrimitive};
 
 fn binomial(n: &BigUint, k: &BigUint) -> BigUint {
     let mut result = BigUint::one();
@@ -80,11 +80,9 @@ fn aks_prime_test(numbers: Vec<BigUint>) -> Vec<BigUint> {
             // Check AKS primality condition for a range of 'a' values
             let phi_n = phi(&num);
             let mut a = BigUint::one();
-            let upper_bound = phi_n.clone()
-            * BigUint::from_f64(num.bits().to_f64().unwrap().log2().ceil()).unwrap_or(BigUint::one())
-            / BigUint::one();
-            
-
+            let upper_bound = phi_n.clone() * BigUint::from(
+                num.bits() / 64 + if num.bits() % 64 == 0 { 0 } else { 1 }
+            );
                         
             while &a <= &upper_bound {
                 if gcd(&a, &num) > BigUint::one() {
