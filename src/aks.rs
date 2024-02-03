@@ -130,6 +130,6 @@ fn main() {
 
     let pseudo_prime_length = primes.len() - input.len();
     // Output the prime numbers and the time taken.
-    println!("The number of pseudo primes: {}", pseudo_prime_length);
+    println!("The count of pseudo primes from the previous test: {}", pseudo_prime_length);
     println!("Time: {:?}", elapsed_time);
 }

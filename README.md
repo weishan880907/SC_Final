@@ -66,34 +66,38 @@ This study explores and compares prime number testing algorithms, focusing on th
 This tool provides functionality for testing the primality of given BigInt numbers using different primality tests. The updated version now supports testing a vector of BigInt numbers and provides results in the form of prime numbers along with the execution time.
 
 ### How to Run Each Test
-To execute a primality test for a vector of BigInt numbers, use the following command format:
+#### Probabilistic Test
+
+To execute a probabilistic primality test for a vector of BigInt numbers, use the following command format:
+
 ```sh
-cargo run --bin <primality_test_name> <number1> <number2> ...
+cargo run --bin <probabilistic_primality_test_name> <num_upperbound>
 ```
 
-Replace <primality_test_name> with the specific primality test you want to run, and provide a list of BigInt numbers (<number1>, <number2>, ...) to test for primality.
-
-### Example
-For example, to test whether 10, 23, and 37 are prime or probably prime using the brute-force primality test, run the following command:
+#### Example
+For instance, to apply the Fermat's Little Theorem primality test to check numbers up to 24, you can use the following command:
 ```sh
-cargo run --bin brute_force 10 23 37
+cargo run --bin fermat_little_theorem 24
+```
+
+Replace <primality_test_name> with the specific probabilistic primality test you want to run, and provide an upper bound <num_upperbound> to test for primality.
+
+#### Deterministic Test
+
+To execute a deterministic primality test for a vector of BigInt numbers, use the following command format:
+```sh
+cargo run --bin <primality_test_name> <probabilistic_primality_test_name>.txt
+
 ```
 
 ### Output Interpretation
-The output of the test will indicate the prime numbers found in the provided list along with the execution time.
-Prime numbers: [23, 37]
-Time: 36.583µs
+#### Probabilistic Test
+The output includes a file named <Prob_test_name>.txt, containing probable prime numbers, and the corresponding execution time is displayed in the terminal.
 
-### How to Loop Over the Test
+#### Deterministic Test
+
+The output indicates the count of pseudo primes obtained from the previous test and the corresponding execution time.
+### How to Run the Experiments
 ```sh
 bash experiment.sh
 ```
-Change the <test_names> and <test_numbers> inside the script, and it will output a test_results.txt file, which records something like this:
-
-```txt
-Test: brute_force
-Prime numbers: [23, 37]
-Time: 32.292µs
----------------------------------
-```
-Adjust the command and interpret the output accordingly based on your specific primality test requirements. Feel free to explore different primality tests by replacing <test_names> and <test_numbers> with the desired test name.
