@@ -1,6 +1,6 @@
 // 499263 Wei-Shan Chang
 
-use std::{env, time};
+use std::{env, time, fs};
 use num_bigint::BigUint;
 use num_traits::{One, Zero, ToPrimitive};
 use rand::Rng;
@@ -41,7 +41,7 @@ fn is_prime_fermat(n: &BigUint, k: usize) -> bool {
     let mut rng = rand::thread_rng();
 
     for _ in 0..k {
-        let a_u64: u64 = rng.gen_range(2..n.to_u64().unwrap_or(u64::MAX));
+        let a_u64: u64 = rng.gen_range(1..n.to_u64().unwrap_or(u64::MAX));
         let a = BigUint::from(a_u64);
         // Check gcd(a, n) != 1
         if gcd(&a, n) != BigUint::one() {
@@ -59,24 +59,40 @@ fn is_prime_fermat(n: &BigUint, k: usize) -> bool {
 fn main() {
     // Get the input from the command line as Vec<BigUint>.
     let args: Vec<String> = env::args().collect();
-    let input: Vec<BigUint> = args
-        .iter()
-        .skip(1) // Skip the program name
-        .map(|arg| arg.parse().unwrap())
-        .collect();
+
+    // Extract the upper bound for primality testing from command-line arguments.
+    let upper_bound: BigUint = args[1].parse().unwrap();
+
+    // Check if the upper bound is less than 2.
+    if upper_bound < BigUint::from(2u32) {
+        println!("Upper bound should be at least 2.");
+        return;
+    }
+    // Create a vector from 1 to the upper bound using a while loop.
+    let mut current_num = BigUint::one();
+    let mut input_vector = Vec::new();
+    while current_num <= upper_bound.clone() {
+        input_vector.push(current_num.clone());
+        current_num += BigUint::one();
+    }
 
     // Choose a value of k, which determines the number of tests.
     let k = 5;
 
     // Find the probably prime numbers in the input vector.
     let start_time: time::Instant = time::Instant::now();
-    let primes: Vec<BigUint> = input
+    let primes: Vec<BigUint> = input_vector
         .into_iter()
         .filter(|num| is_prime_fermat(num, k))
         .collect();
     let elapsed_time = start_time.elapsed();
 
     // Output the probably prime numbers and the time taken.
-    println!("Probably prime numbers: {:?}", primes);
     println!("Time: {:?}", elapsed_time);
+
+    // Split the string by "/" and collect it into a vector of parts.
+    let parts: Vec<&str> = args[0].split('/').collect(); // target/debug/fermat_little_theorem
+    let output_filename = format!("{}.txt", parts[parts.len() - 1]);
+    let primes_str: String = primes.iter().map(|p| p.to_string()).collect::<Vec<_>>().join(" ");
+    fs::write(&output_filename, primes_str).expect("Failed to write to file");
 }

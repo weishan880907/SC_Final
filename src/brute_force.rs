@@ -1,6 +1,6 @@
 // 499263 Wei-Shan Chang
 
-use std::{env, time};
+use std::{env, time, fs};
 use num_bigint::BigUint;
 use num_traits::{One, Zero};
 
@@ -29,10 +29,18 @@ fn find_prime_numbers(input: Vec<BigUint>) -> Vec<BigUint> {
 fn main() {
     // Get the input from the command line as Vec<BigUint>.
     let args: Vec<String> = env::args().collect();
-    let input: Vec<BigUint> = args
-        .iter()
-        .skip(1) // Skip the program name
-        .map(|arg| arg.parse().unwrap())
+
+    // Extract the input file name from command-line arguments.
+    let input_filename = &args[1];
+
+    // Read the input from the specified file.
+    let input_content = fs::read_to_string(input_filename).expect("Failed to read file");
+    
+    // Parse the input content into a Vec<BigUint>.
+    let input: Vec<BigUint> = input_content
+        .trim()
+        .split_whitespace()
+        .map(|num| num.parse().unwrap())
         .collect();
 
     // Find the prime numbers in the input vector.
@@ -40,7 +48,8 @@ fn main() {
     let primes: Vec<BigUint> = find_prime_numbers(input.clone());
     let elapsed_time = start_time.elapsed();
 
+    let pseudo_prime_length = primes.len() - input.len();
     // Output the prime numbers and the time taken.
-    println!("Prime numbers: {:?}", primes);
+    println!("The number of pseudo primes: {}", pseudo_prime_length);
     println!("Time: {:?}", elapsed_time);
 }

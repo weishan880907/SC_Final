@@ -1,4 +1,4 @@
 target/
 Cargo.lock
-test_results.txt
+*.txt
 experiment.sh
