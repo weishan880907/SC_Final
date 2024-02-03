@@ -19,8 +19,15 @@ path = "src/fermat_little_theorem.rs"
 name = "sieve_of_eratosthenes"
 path = "src/sieve_of_eratosthenes.rs"
 
+[[bin]]
+name = "strong_lucas"
+path = "src/strong_lucas.rs"
+
+[[bin]]
+name = "miller_rabin"
+path = "src/miller_rabin.rs"
+
 [dependencies]
 rand = "0.8"
-num-bigint = "0.4"
+num-bigint = { version = "0.4", features = ["rand"] }
 num-traits = "0.2"
-rayon = "1.5.1"

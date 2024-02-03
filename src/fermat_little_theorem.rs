@@ -77,7 +77,7 @@ fn main() {
     }
 
     // Choose a value of k, which determines the number of tests.
-    let k = 5;
+    let k = 2;
 
     // Find the probably prime numbers in the input vector.
     let start_time: time::Instant = time::Instant::now();
