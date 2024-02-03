@@ -98,6 +98,28 @@ The output includes a file named <Prob_test_name>.txt, containing probable prime
 
 The output indicates the count of pseudo primes obtained from the previous test and the corresponding execution time.
 ### How to Run the Experiments
+We have designed three experiments to assess different aspects of our primality tests. To execute these experiments, follow the steps below:
+
+#### Experiment 1: Deterministic Test Speed
+
+Run the following command to evaluate the speed of the deterministic test:
 ```sh
-bash experiment.sh
+bash experiment_det_speed.sh
 ```
+
+#### Experiment 2: Probabilistic Test Speed
+
+Execute the following command to measure the speed of the probabilistic test:
+```sh
+bash experiment_prob_speed.sh
+```
+
+#### Experiment 3: Correctness Test
+
+For this experiment, we first conduct the probabilistic test to identify probable primes. Then, we use these probable primes as input for the deterministic test to check for pseudo primes.
+
+To perform the correctness test, use the following command:
+```sh
+bash experiment_correctness.sh
+```
+These commands will execute the respective experiments and provide insights into the speed and correctness of the implemented primality tests. Adjustments can be made to the scripts or experiments as needed based on specific requirements.
