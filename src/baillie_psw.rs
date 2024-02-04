@@ -1,23 +1,24 @@
 // 403581 Yunzhou Lu
 
 use num_bigint::{ToBigInt, BigInt};
+use num_traits::{One, Zero};
 use std::time::Instant;
 use std::env;
 use std::fs::File;
 use std::io::Write;
 
-/* This program decides whether a number passes the strong Lucas probable prime test.
-   The combination of this test and a Miller-Rabin test with base 2 gives a Baillie-PSW test.*/
+/* This program decides whether a number passes the Baillie-PSW test.
+   It is the combination of strong lucas test and a Miller-Rabin test with base 2.*/
 fn main() {
     let start_time = Instant::now();
 
     let args :Vec<String> = env::args().collect();
     if args.len() != 2 {
-        eprintln!("Usage: cargo run --bin strong_lucas <upper bound>");
+        eprintln!("Usage: cargo run --bin baillie_psw <upper bound>");
         std::process::exit(1);
     }
 
-    let mut file = match File::create("strong_lucas.txt") {
+    let mut file = match File::create("baillie_psw.txt") {
         Ok(file) => file,
         Err(err) => {
             panic!("Failed to create file: {}", err);
@@ -28,34 +29,92 @@ fn main() {
     let upper_bound = BigInt::parse_bytes(upper_bound.as_bytes(), 10).unwrap();
 
     let mut r = BigInt::from(1);
+    let mut c = 0;
 
     while &r <= &upper_bound {
         r += 1;
-        if is_small_prime(&r) {
-            if let Err(err) = write!(&mut file, "{} ", &r) {
+        if baillie(&r) {
+            c+=1;
+            if let Err(err) = write!(&mut file, "{} ", r) {
                 panic!("Failed to write to file: {}", err);
             }
+        }
+        
+    }
+
+    println!("{c}");
+    //print the total time
+    let duration = start_time.elapsed();
+    let seconds = duration.as_millis();
+    println!("Time : {}ms", seconds);
+}
+
+fn baillie(r: &BigInt) -> bool {
+    if is_small_prime(r) {
+        return true
+    } else {
+        if !is_perfect_square(&r) && not_devisable_by_small_prime(r) 
+        && strong_lucas_tests(r) && is_prime_miller(r) {
+            return true
         } else {
-            if !is_perfect_square(&r) && not_devisable_by_small_prime(&r) {
-                match strong_lucas_tests(&r) {
-                    true => {
-                        if let Err(err) = write!(&mut file, "{} ", &r) {
-                            panic!("Failed to write to file: {}", err);
-                        }
-                    }
-                    false => {
-                        continue
-                    }
-                }
-            } else {
-                continue
-            }
+            return false
+        }
+    }
+}
+
+fn miller_test_base_two(d: BigInt, n: &BigInt) -> bool {
+    let mut x = power(&BigInt::from(2), &d, n);
+
+    if x == One::one() || x == (n - 1) {
+        return true;
+    }
+
+    let mut d = d;
+    while d < (n - 1) {
+        x = (&x * &x) % n;
+        d <<= 1;
+
+        if x == One::one() {
+            return false;
+        }
+        if x == (n - 1) {
+            return true;
         }
     }
 
-    //print the total time
-    let duration = start_time.elapsed();
-    println!("Time: {:?}", duration);
+    false
+}
+
+fn is_prime_miller(n: &BigInt) -> bool {
+    if n == &One::one() || n == &4.to_bigint().unwrap() {
+        return false;
+    }
+    let mut d:BigInt = n - 1;
+    while &d & &One::one() == Zero::zero() {
+        d >>= 1;
+    }
+
+    if !miller_test_base_two(d.clone(), n) {
+        return false;
+    }
+    true
+}
+
+fn power(x: &BigInt, y: &BigInt, p: &BigInt) -> BigInt {
+    let mut result = One::one();
+    let mut base = x % p;
+    let mut exponent = y.clone();
+    //let two = 2.to_bigint().unwrap();
+
+    while exponent > Zero::zero() {
+        if &exponent & &One::one() == One::one() {
+            result = (result * &base) % p;
+        }
+        exponent >>= 1;
+        base = (&base * &base) % p;
+    }
+
+    result
 }
 
 fn strong_lucas_tests(num: &BigInt) -> bool {
@@ -260,4 +319,5 @@ fn not_devisable_by_small_prime(num: &BigInt) -> bool {
     true
 }
 
-const SMALL_PRIME_LIST: [i32; 25] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+const SMALL_PRIME_LIST: [i32; 25] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 
+47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];

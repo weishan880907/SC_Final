@@ -27,6 +27,10 @@ path = "src/strong_lucas.rs"
 name = "miller_rabin"
 path = "src/miller_rabin.rs"
 
+[[bin]]
+name = "baillie_psw"
+path = "src/baillie_psw.rs"
+
 [dependencies]
 rand = "0.8"
 num-bigint = { version = "0.4", features = ["rand"] }
