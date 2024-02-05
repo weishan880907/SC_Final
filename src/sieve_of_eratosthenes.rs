@@ -65,7 +65,7 @@ fn main() {
     let primes: Vec<BigUint> = find_primes_sieve(input.clone());
     let elapsed_time = start_time.elapsed();
 
-    let pseudo_prime_length = primes.len() - input.len();
+    let pseudo_prime_length = input.len() - primes.len();
     // Output the prime numbers and the time taken.
     println!("The count of pseudo primes from the previous test: {}", pseudo_prime_length);
     println!("Time: {:?}", elapsed_time);
