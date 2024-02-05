@@ -12,6 +12,10 @@ name = "brute_force"
 path = "src/brute_force.rs"
 
 [[bin]]
+name = "brute_force_u64"
+path = "src/brute_force_u64.rs"
+
+[[bin]]
 name = "fermat_little_theorem"
 path = "src/fermat_little_theorem.rs"
 
