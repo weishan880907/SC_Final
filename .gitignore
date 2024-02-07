@@ -1,2 +1,7 @@
 target/
+output/
+input/
 Cargo.lock
+*.txt
+.DS_store
+*.py
