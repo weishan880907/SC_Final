@@ -4,7 +4,7 @@
 PRIM_TEST_NAME=("brute_force" "brute_force_u64")
 
 # Define the file of random number for type tests
-RANDOM_NUM="type_random_input.txt"
+RANDOM_NUM="intput/type_random_input.txt"
 
 # Output file
 output_file="output/type.txt"
