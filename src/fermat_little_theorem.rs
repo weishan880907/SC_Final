@@ -92,7 +92,7 @@ fn main() {
 
     // Split the string by "/" and collect it into a vector of parts.
     let parts: Vec<&str> = args[0].split('/').collect(); // target/debug/fermat_little_theorem
-    let output_filename = format!("{}.txt", parts[parts.len() - 1]);
+    let output_filename = format!("output/{}.txt", parts[parts.len() - 1]);
     let primes_str: String = primes.iter().map(|p| p.to_string()).collect::<Vec<_>>().join(" ");
     fs::write(&output_filename, primes_str).expect("Failed to write to file");
 }

@@ -7,7 +7,7 @@ PRIM_TEST_NAME=("fermat_little_theorem" "miller_rabin" "strong_lucas" "baillie_p
 UPPER_BOUNDS=(10 100 1000 10000 100000 1000000)
 
 # Output file
-output_file="prob_speed.txt"
+output_file="output/prob_speed.txt"
 
 # Number of iterations
 NUM_ITERATIONS=5

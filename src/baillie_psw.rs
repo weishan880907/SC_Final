@@ -18,7 +18,7 @@ fn main() {
         std::process::exit(1);
     }
 
-    let mut file = match File::create("baillie_psw.txt") {
+    let mut file = match File::create("output/baillie_psw.txt") {
         Ok(file) => file,
         Err(err) => {
             panic!("Failed to create file: {}", err);

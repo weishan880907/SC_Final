@@ -3,3 +3,4 @@ Cargo.lock
 *.txt
 experiment.sh
 .DS_store
+output/
