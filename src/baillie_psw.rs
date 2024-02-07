@@ -29,12 +29,12 @@ fn main() {
     let upper_bound = BigInt::parse_bytes(upper_bound.as_bytes(), 10).unwrap();
 
     let mut r = BigInt::from(1);
-    let mut c = 0;
+    // let mut c = 0;
 
     while &r <= &upper_bound {
         r += 1;
         if baillie(&r) {
-            c+=1;
+            // c+=1;
             if let Err(err) = write!(&mut file, "{} ", r) {
                 panic!("Failed to write to file: {}", err);
             }
@@ -42,11 +42,10 @@ fn main() {
         
     }
 
-    println!("{c}");
+    // println!("{c}");
     //print the total time
     let duration = start_time.elapsed();
-    let seconds = duration.as_millis();
-    println!("Time : {}ms", seconds);
+    println!("Time : {:?}", duration);
 }
 
 fn baillie(r: &BigInt) -> bool {
