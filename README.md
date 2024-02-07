@@ -134,14 +134,14 @@ To address potential inaccuracies in probabilistic primality tests, this experim
 
 This test is a combination of the previous two tests.
 
-#### Experiment 4: Comparative Efficiency Analysis of Different Types - BigInt vs. u64
+### Experiment 4: Comparative Efficiency Analysis of Different Types - BigInt vs. u64
 Initially utilizing BigInt for handling large numbers, this experiment compares the efficiency of tests using BigInt and u64. Employing brute force methods, the study highlights performance differences between these data types in prime testing scenarios.
 
 Execute the following command to measure the type test under the <SC_Final> directory:
 ```sh
 bash experiment/experiment_type.sh
 ```
-#### Program Running Environment
+### Program Running Environment
 The Rust program, developed with Rust version 1.73.0, relies on key dependencies such as rand 0.8 and num-bigint 0.4 with the "rand" feature. Tested on a MacBook Pro running macOS with Darwin Kernel Version 22.3.0, built on Jan 30, 2023, the system supports the ARM64 architecture. Managed with rustup, the program's Cargo.toml file ensures dependency reproducibility and considers specific configurations for the target operating system.
 
 These commands will execute the respective experiments and provide insights into the speed and correctness of the implemented primality tests. Adjustments can be made to the scripts or experiments as needed based on specific requirements.
