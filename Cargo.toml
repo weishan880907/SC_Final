@@ -12,6 +12,10 @@ name = "brute_force"
 path = "src/brute_force.rs"
 
 [[bin]]
+name = "brute_force_u64"
+path = "src/brute_force_u64.rs"
+
+[[bin]]
 name = "fermat_little_theorem"
 path = "src/fermat_little_theorem.rs"
 
@@ -19,5 +23,25 @@ path = "src/fermat_little_theorem.rs"
 name = "sieve_of_eratosthenes"
 path = "src/sieve_of_eratosthenes.rs"
 
+[[bin]]
+name = "strong_lucas"
+path = "src/strong_lucas.rs"
+
+[[bin]]
+name = "miller_rabin"
+path = "src/miller_rabin.rs"
+
+[[bin]]
+name = "baillie_psw"
+path = "src/baillie_psw.rs"
+
+[[bin]]
+name = "apr_cl"
+path = "src/apr_cl.rs"
+
 [dependencies]
-rand = "0.8.5"
+rand = "0.8"
+num-bigint = { version = "0.4", features = ["rand"] }
+num-traits = "0.2"
+num-integer = "0.1.45"
+num-iter = "0.1.43"

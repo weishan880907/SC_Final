@@ -1,33 +1,29 @@
 // 499263 Wei-Shan Chang
 
-use std::{env, time, fs};
-use num_bigint::BigUint;
-use num_traits::{One, Zero};
+use std::{env, fs, time};
 
-fn is_prime(n: &BigUint) -> bool {
-    if n <= &BigUint::one() {
+fn is_prime(n: u64) -> bool {
+    if n <= 1 {
         return false;
     }
 
-    let mut i = BigUint::from(2u32);
-    let sqrt_n = n.sqrt();
+    let sqrt_n = (n as f64).sqrt() as u64;
 
-    while &i <= &sqrt_n {
-        if n % &i == BigUint::zero() {
+    for i in 2..=sqrt_n {
+        if n % i == 0 {
             return false;
         }
-        i += BigUint::one();
     }
 
     true
 }
 
-fn find_prime_numbers(input: Vec<BigUint>) -> Vec<BigUint> {
-    input.into_iter().filter(|n| is_prime(n)).collect()
+fn find_prime_numbers(input: Vec<u64>) -> Vec<u64> {
+    input.into_iter().filter(|&n| is_prime(n)).collect()
 }
 
 fn main() {
-    // Get the input from the command line as Vec<BigUint>.
+    // Get the input from the command line as Vec<u64>.
     let args: Vec<String> = env::args().collect();
 
     // Extract the input file name from command-line arguments.
@@ -35,9 +31,9 @@ fn main() {
 
     // Read the input from the specified file.
     let input_content = fs::read_to_string(input_filename).expect("Failed to read file");
-    
-    // Parse the input content into a Vec<BigUint>.
-    let input: Vec<BigUint> = input_content
+
+    // Parse the input content into a Vec<u64>.
+    let input: Vec<u64> = input_content
         .trim()
         .split_whitespace()
         .map(|num| num.parse().unwrap())
@@ -45,7 +41,7 @@ fn main() {
 
     // Find the prime numbers in the input vector.
     let start_time = time::Instant::now();
-    let primes: Vec<BigUint> = find_prime_numbers(input.clone());
+    let primes: Vec<u64> = find_prime_numbers(input.clone());
     let elapsed_time = start_time.elapsed();
 
     let pseudo_prime_length = input.len() - primes.len();
