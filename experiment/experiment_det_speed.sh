@@ -4,7 +4,7 @@
 PRIM_TEST_NAME=("aks" "brute_force" "sieve_of_eratosthenes" )
 
 # # Define the file name for deterministic tests (speed)
-FILENAME_S=("input/det_test_inputs_1.txt" "input/det_test_inputs_2.txt" "input/det_test_inputs_3.txt" "input/det_test_inputs_4.txt" "input/det_test_inputs_5.txt" "input/det_test_inputs_6.txt" "input/det_test_inputs_7.txt")
+FILENAME_S=("input/det_test_inputs_5.txt" "input/det_test_inputs_6.txt" "input/det_test_inputs_7.txt")
 
 # Output file for deterministic tests (speed)
 output_file_S="output/det_speed.txt"
@@ -17,6 +17,9 @@ output_file_A="output/det_acc.txt"
 
 # Number of iterations
 NUM_ITERATIONS=5
+
+# Set a time limit for the entire script (in seconds)
+ulimit -t 600
 
 # Run deterministic tests
 for file in "${FILENAME_S[@]}"; do

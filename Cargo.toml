@@ -36,11 +36,16 @@ name = "baillie_psw"
 path = "src/baillie_psw.rs"
 
 [[bin]]
-name = "apr_cl"
-path = "src/apr_cl.rs"
+name = "apr_cl_notwork"
+path = "src/apr_cl_notwork.rs"
+
+[[bin]]
+name = "ecpp_notwork"
+path = "src/ecpp_notwork.rs"
 
 [dependencies]
 rand = "0.8"
+num = "0.4"
 num-bigint = { version = "0.4", features = ["rand"] }
 num-traits = "0.2"
 num-integer = "0.1.45"
