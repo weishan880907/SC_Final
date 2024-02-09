@@ -4,7 +4,7 @@
 PRIM_TEST_NAME=("brute_force" "brute_force_u64")
 
 # Define the file of random number for type tests
-RANDOM_NUM="intput/type_random_input.txt"
+RANDOM_NUM="input/type_random_input.txt"
 
 # Output file
 output_file="output/type.txt"
@@ -22,7 +22,7 @@ for upper in "${RANDOM_NUM[@]}"; do
             echo "Upper Bound: $upper" >> $output_file
             echo "Test: $test" >> $output_file
             cargo run --bin $test $upper >> $output_file
-            # echo "---------------------------------" >> $output_file
+            echo "---------------------------------" >> $output_file
         done
         echo "---------------------------------" >> $output_file
     done
