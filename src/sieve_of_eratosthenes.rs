@@ -5,12 +5,14 @@ use num_bigint::BigUint;
 use num_traits::{One, Zero, ToPrimitive};
 
 fn sieve_of_eratosthenes(limit: &BigUint) -> Vec<bool> {
+    // let limit_sqrt = limit.sqrt() + BigUint::one();
     let limit_usize: usize = limit.to_usize().unwrap_or(usize::MAX);
-    let mut is_prime = vec![true; limit_usize + 1];
+
+    let mut is_prime = vec![true; limit_usize+1];
     is_prime[0] = false;
     is_prime[1] = false;
 
-    for i in 2..=limit_usize {
+    for i in 2..=((limit_usize as f64).sqrt() as usize) {
         if is_prime[i] {
             let mut j = i * i;
             while j <= limit_usize {
